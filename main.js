@@ -11,3 +11,17 @@ if(args.length !== 1) {
 }
 
 const filename = args[0];
+if (!fs.existsSync(filename)) {
+    console.log(`The file ${filename} does not exist.`)
+    process.exit(-1)
+}
+else if (filename.indexOf('.env') > -1)
+{
+    const content = fs.readFileSync(filename, "utf-8")
+    env (content)  
+}
+else if (filename.indexOf('.ini') > -1)
+{
+    const content = fs.readFileSync(filename, "utf-8")
+    ini (content)   
+}
